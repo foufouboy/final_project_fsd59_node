@@ -2,9 +2,11 @@ import http from "node:http";
 import module from "./controller.js";
 import fs from "node:fs";
 import controller from "./controller.js";
+import dotenv from "dotenv";
+dotenv.config();
 
-const hostname = "localhost";
-const port = "8080";
+const hostname = process.env.APP_HOST;
+const port = process.env.APP_PORT;
 
 const server = http.createServer((req, res) => {
 	const url = req.url.replace("/", "");
