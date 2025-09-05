@@ -1,0 +1,14 @@
+extends layout
+block content
+  - console.log(users)
+  h1 Liste d'utilisateurs
+  ul
+    each user in users
+      li #{user.name} #{user.birth} 
+        form(action="/edit" method="GET" style="display:inline")
+          input(type="hidden" name="name" value=user.name)
+          input(type="hidden" name="birth" value=user.birth)
+          button(type="submit") Edit
+        form(action="/delete" method="POST" style="display:inline")
+          input(type="hidden" id="name" name="name" value=user.name)
+          button(type="submit") Delete

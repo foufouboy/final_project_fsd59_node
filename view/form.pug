@@ -1,0 +1,18 @@
+extends layout
+block content
+  .add-user
+    if user 
+      h1 Modifier l'utilisateur :
+    else
+      h1 Ajouter un nouvel utilisateur :
+    form(action=user ? "/edit" : "/" method=user ? "POST" : "POST")
+      div
+        label(for="name") Nom :
+        input(type="text" id="name" name="name" required value=user ? user.name : "")
+      div
+        label(for="birth") Date de naissance :
+        input( type="date" id="birth" name="birth" required value=user ? user.birth : "")
+        if user
+          input(type="hidden" name="originalName" value=user.name)
+      div
+        button(type="submit") Envoyer
